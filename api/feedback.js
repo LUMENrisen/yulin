@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     }
 
     // 邮件接收地址
-    const TO_EMAIL = 'rqmkt@foxmail.com';
+    const TO_EMAIL = 'lyc@lumenatelier.top';
     const CC_EMAIL = 'lyc@lumenatelier.top';
 
     try {
