@@ -9,7 +9,6 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: '请完整填写所有字段' });
     }
 
-    // 只发给你自己
     const TO_EMAIL = 'lyc@lumenatelier.top';
 
     try {
