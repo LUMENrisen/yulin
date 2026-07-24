@@ -1,22 +1,18 @@
 export default async function handler(req, res) {
-    // 只允许 POST 请求
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
     const { name, email, message } = req.body;
 
-    // 简单校验
     if (!name || !email || !message) {
         return res.status(400).json({ error: '请完整填写所有字段' });
     }
 
-    // 邮件接收地址
+    // 只发给你自己
     const TO_EMAIL = 'lyc@lumenatelier.top';
-    const CC_EMAIL = 'lyc@lumenatelier.top';
 
     try {
-        // 使用 Vercel 的邮件发送能力
         const response = await fetch('https://api.resend.com/emails', {
             method: 'POST',
             headers: {
@@ -26,7 +22,6 @@ export default async function handler(req, res) {
             body: JSON.stringify({
                 from: 'onboarding@resend.dev',
                 to: [TO_EMAIL],
-                cc: [CC_EMAIL],
                 subject: `【玉林选题框架】来自 ${name} 的反馈`,
                 html: `
                     <p><strong>姓名：</strong>${name}</p>
